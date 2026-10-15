@@ -140,7 +140,6 @@ namespace eCommerce.Core.Services
                 new Claim("UserId",user.Id.ToString()),
                 new Claim("UserName",user.Name),
                 new Claim("Email",user.Email),
-                new Claim("IsAdmin","false"),
                 new Claim("role", user.role?.ToString() ?? "User")
                  };
                 //Bring The Key
