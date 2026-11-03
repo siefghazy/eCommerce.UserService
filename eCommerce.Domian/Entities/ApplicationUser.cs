@@ -17,7 +17,7 @@ namespace eCommerce.Domian.Entities
         public bool IsDeleted { get; set; } = false;
         public string? RefreshToken { get; set; }
         public RolesOptions? Roles { get; set; }
-        public bool EmailConfirmed { get; set; } = false;
-        public string EmailConfirmationToken { get; set; }
+        public bool? EmailConfirmed { get; set; } = false;
+        public string? EmailConfirmationToken { get; set; }
     }
 }

@@ -13,6 +13,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["eCommerce/eCommerce.csproj", "eCommerce/"]
+COPY ["eCommerce.Core/eCommerce.Core.csproj", "eCommerce.Core/"]
+COPY ["eCommerce.InfraStructure/eCommerce.InfraStructure.csproj", "eCommerce.InfraStructure/"]
+COPY ["eCommerce.Domian/eCommerce.Domian.csproj", "eCommerce.Domian/"]
 RUN dotnet restore "./eCommerce/eCommerce.csproj"
 COPY . .
 WORKDIR "/src/eCommerce"

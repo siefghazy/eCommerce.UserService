@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ecom-userservice-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 2to2002001
+      POSTGRES_DB: EcomUserServiceDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  userservice:
+    build:
+      context: .
+      dockerfile: eCommerce/Dockerfile
+    container_name: ecom-userservice-api
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: "http://+:8080"
+      ConnectionStrings__CONNECTION_STRING: "Host=postgres;Port=5432;Database=EcomUserServiceDb;Username=postgres;Password=2to2002001"
+      Jwt__Key: "Q9w!fS7x#L3nZ@8pV4rT1uM%kE6yD2bH9gF$J0cR5sW"
+      Jwt__Issuer: "UserServiceIssuer"
+      Jwt__Audience: "UserServiceAudience"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:

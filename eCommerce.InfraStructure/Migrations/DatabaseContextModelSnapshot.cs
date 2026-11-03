@@ -32,10 +32,9 @@ namespace eCommerce.InfraStructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("EmailConfirmationToken")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("EmailConfirmed")
+                    b.Property<bool?>("EmailConfirmed")
                         .HasColumnType("boolean");
 
                     b.Property<int?>("Gender")
