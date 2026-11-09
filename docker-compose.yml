@@ -24,10 +24,10 @@ services:
     container_name: ecom-userservice-api
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: "http://+:8080"
+      ASPNETCORE_URLS: "http://+:8081"
       ConnectionStrings__CONNECTION_STRING: "Host=postgres;Port=5432;Database=EcomUserServiceDb;Username=postgres;Password=2to2002001"
       Jwt__Key: "Q9w!fS7x#L3nZ@8pV4rT1uM%kE6yD2bH9gF$J0cR5sW"
       Jwt__Issuer: "UserServiceIssuer"
@@ -38,3 +38,7 @@ services:
 
 volumes:
   postgres_data:
+  
+networks:
+ ecommerce-network:
+  external: true  
